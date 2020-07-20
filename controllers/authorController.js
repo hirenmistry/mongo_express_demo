@@ -2,9 +2,6 @@ const {
     body,
     validationResult
 } = require('express-validator');
-const {
-    sanitizeBody
-} = require('express-validator');
 
 var Author = require('../models/author');
 var async = require('async');
@@ -88,10 +85,10 @@ exports.author_create_post = [
     }).isISO8601(),
 
     // Sanitize fields.
-    sanitizeBody('first_name').escape(),
-    sanitizeBody('family_name').escape(),
-    sanitizeBody('date_of_birth').toDate(),
-    sanitizeBody('date_of_death').toDate(),
+    body('first_name').escape(),
+    body('family_name').escape(),
+    body('date_of_birth').toDate(),
+    body('date_of_death').toDate(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {

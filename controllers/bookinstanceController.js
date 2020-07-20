@@ -1,7 +1,6 @@
 const {
     body,
     validationResult,
-    sanitizeBody
 } = require('express-validator');
 var BookInstance = require('../models/bookinstance');
 var Book = require('../models/book');
@@ -77,10 +76,10 @@ exports.bookinstance_create_post = [
     }).isISO8601(),
 
     // Sanitize fields.
-    sanitizeBody('book').escape(),
-    sanitizeBody('imprint').escape(),
-    sanitizeBody('status').trim().escape(),
-    sanitizeBody('due_back').toDate(),
+    body('book').escape(),
+    body('imprint').escape(),
+    body('status').trim().escape(),
+    body('due_back').toDate(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
