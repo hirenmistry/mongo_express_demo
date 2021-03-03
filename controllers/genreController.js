@@ -67,7 +67,7 @@ exports.genre_create_post = [
     }).trim(),
 
     // Sanitize (escape) the name field.
-    validator.sanitizeBody('name').escape(),
+    validator.body('name').escape(), 
 
     // Process request after validation and sanitization.
     (req, res, next) => {

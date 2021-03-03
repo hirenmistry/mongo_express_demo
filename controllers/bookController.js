@@ -2,9 +2,7 @@ const {
     body,
     validationResult
 } = require('express-validator');
-const {
-    sanitizeBody
-} = require('express-validator');
+
 var Book = require('../models/book');
 var Author = require('../models/author');
 var Genre = require('../models/genre');
@@ -146,7 +144,7 @@ exports.book_create_post = exports.book_create_post = [
     }).trim(),
 
     // Sanitize fields (using wildcard).
-    sanitizeBody('*').escape(),
+    body('*').escape(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -343,11 +341,11 @@ exports.book_update_post = exports.book_update_post = [
     }).trim(),
 
     // Sanitize fields.
-    sanitizeBody('title').escape(),
-    sanitizeBody('author').escape(),
-    sanitizeBody('summary').escape(),
-    sanitizeBody('isbn').escape(),
-    sanitizeBody('genre.*').escape(),
+    body('title').escape(),
+    body('author').escape(),
+    body('summary').escape(),
+    body('isbn').escape(),
+    body('genre.*').escape(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
